@@ -76,6 +76,7 @@ echo "====== Container Shutdown ======"
 echo "End time: $(date)"
 echo "Container completed successfully"
 ```
+
 <img width="1093" height="200" alt="Снимок экрана 2025-12-23 в 22 50 14" src="https://github.com/user-attachments/assets/832484ca-64a0-4c87-9559-0cbc91935205" />
 
 ---
@@ -83,34 +84,56 @@ echo "Container completed successfully"
 ##  1: Подготовка окружения
 
 ```bash
+
 # Проверка установленной версии Docker
 docker -- version
 docker ps
+
 ```
+
 <img width="950" height="250" alt="image" src="https://github.com/user-attachments/assets/26095e63-e182-44e6-87c0-e4d45c66d68e" />
+
 ```bash
+
 # Создание директории для практики
 mkdir docker-practice
 cd docker-practice
+
 ```
+
 <img width="517" height="56" alt="image" src="https://github.com/user-attachments/assets/9cb901eb-4bd6-4382-8894-ae58cf56c8d2" />
+
 ```bash
+
 # Копирование Dockerfile и entrypoint.sh в директорию
 # (файлы должны быть созданы согласно примерам выше)
+
 ```
+
 <img width="494" height="46" alt="image" src="https://github.com/user-attachments/assets/7ec193a2-cc91-4640-95d9-a975249a100f" />
+
 <img width="879" height="650" alt="image" src="https://github.com/user-attachments/assets/1705e242-681b-4b42-b314-3a45959a35a3" />
+
 <img width="872" height="643" alt="image" src="https://github.com/user-attachments/assets/3c5cf0c5-cd30-45fd-b09c-efa08d89ca5b" />
+
 ```bash
+
 #Выдаем права
 chmod +x entrypoint.sh
+
 ```
+
 <img width="558" height="37" alt="image" src="https://github.com/user-attachments/assets/053c6fa5-90bf-4f0f-88f1-d8eb64b77636" />
+
 ```bash
+
 # Сборка образа
 docker build -t practice-image:1.0 .
+
 ```
+
 <img width="865" height="488" alt="image" src="https://github.com/user-attachments/assets/5e61e363-ea5e-4412-af6e-5a1dae629dd2" />
+
 <img width="888" height="83" alt="image" src="https://github.com/user-attachments/assets/39da7a90-bf34-44cb-aa44-e32f50de517c" />
 
 
@@ -118,6 +141,7 @@ docker build -t practice-image:1.0 .
 ### Задание 1: Вывод логов в файл
 
 ```bash
+
 # Запуск контейнера
 docker run -d --name practice-container-1 practice-image:1.0 30
 
@@ -132,7 +156,9 @@ cat /tmp/container_logs.txt
 
 # Очистка
 docker rm practice-container-1
+
 ```
+
 <img width="893" height="576" alt="image" src="https://github.com/user-attachments/assets/04aaf4c7-464e-464e-8829-9b5947343c0b" />
 
 
@@ -140,6 +166,7 @@ docker rm practice-container-1
 ### Задание 2: Проверка docker-stats
 
 ```bash
+
 # Запуск контейнера в background
 docker run -d --name practice-container-2 practice-image:1.0 45
 
@@ -151,7 +178,9 @@ docker stats --no-stream practice-container-2 > /tmp/container_stats.txt
 
 # После завершения контейнера
 docker rm practice-container-2
+
 ```
+
 <img width="888" height="199" alt="image" src="https://github.com/user-attachments/assets/31e6c5b4-3a3a-4f04-9852-48b950a35dae" />
 
 
@@ -159,6 +188,7 @@ docker rm practice-container-2
 ### Задание 3: Ограничение ресурсов
 
 ```bash
+
 # Запуск контейнера с ограничением памяти и CPU
 docker run -d --name practice-limited \
   --memory=256m \
@@ -174,7 +204,9 @@ docker update --memory=512m practice-limited
 # Очистка
 docker stop practice-limited
 docker rm practice-limited
+
 ```
+
 <img width="893" height="237" alt="image" src="https://github.com/user-attachments/assets/216e71d0-184a-4efe-a8cd-b8489b9064eb" />
 
 
@@ -182,6 +214,7 @@ docker rm practice-limited
 ### Задание 4: Экспорт в tar
 
 ```bash
+
 # Запуск контейнера и ожидание его завершения
 docker run -d --name practice-export practice-image:1.0 30
 
@@ -199,7 +232,9 @@ tar -tf /tmp/container_export.tar | head -20
 
 # Очистка
 docker rm practice-export
+
 ```
+
 <img width="880" height="515" alt="image" src="https://github.com/user-attachments/assets/11eed9b3-21e4-43ac-bc34-eb27cd62db46" />
 
 
@@ -207,6 +242,7 @@ docker rm practice-export
 ### Задание 5: Импорт из tar
 
 ```bash
+
 # Загрузка образа из архива
 docker import /tmp/container_export.tar restored-practice:1.0
 
@@ -224,7 +260,9 @@ docker logs restored-from-tar
 docker stop restored-from-tar
 docker rm restored-from-tar
 docker rmi restored-practice:1.0
+
 ```
+
 <img width="874" height="708" alt="image" src="https://github.com/user-attachments/assets/b3305642-4ad4-45a8-91ed-5c63c68972f3" />
 
 
