@@ -384,7 +384,7 @@ docker import /tmp/container_export.tar restored-practice:1.0
 docker images | grep restored
 
 # Запуск контейнера из загруженного образа
-docker run -d --name restored-from-tar restored-practice:1.0 30
+docker run -d --name restored-from-tar restored-practice:1.0 /home/appuser/entrypoint.sh
 
 # Проверка логов восстановленного контейнера
 sleep 35
