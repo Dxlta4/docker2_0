@@ -207,7 +207,8 @@ docker rm practice-limited
 
 ```
 
-<img width="893" height="237" alt="image" src="https://github.com/user-attachments/assets/216e71d0-184a-4efe-a8cd-b8489b9064eb" />
+<img width="885" height="384" alt="image" src="https://github.com/user-attachments/assets/94c616c1-0c7f-4fa0-8c5b-1fd88d623862" />
+
 
 
 
